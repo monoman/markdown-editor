@@ -214,7 +214,7 @@ Props to Mr. Doob and his [code editor](http://mrdoob.com/projects/code-editor/)
 the inspiration to this, and some handy implementation hints, came to James.
 
 ### Stuff used to make this:
- * [marked](https://github.com/chjj) for Markdown parsing
+ * [marked](https://github.com/markedjs/marked) for Markdown parsing
  * [CodeMirror](http://codemirror.net/) for the awesome syntax-highlighted editor
  * [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) for syntax highlighting in output code blocks
  * [js-deflate](https://github.com/dankogai/js-deflate) for gzipping of data to make it fit in URLs
@@ -271,7 +271,7 @@ the inspiration to this, and some handy implementation hints, came to James.
       	head = title + "\n===\n";
       }
       val = val.replace(/^\s*---\s*(\n([^-]|-(?!-))*)+---\s*/, head); // ignore YAML front matter
-      document.getElementById('out').innerHTML = marked(val);
+      document.getElementById('out').innerHTML = marked.parse(val);
     }
 
     var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
