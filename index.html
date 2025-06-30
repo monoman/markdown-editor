@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Markdown Editor</title>
   <script src="marked.js"></script>
@@ -13,14 +14,16 @@
   <script src="rawdeflate.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,500&display=swap" rel="stylesheet">  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="codemirror/lib/codemirror.css">
   <link rel="stylesheet" href="default.css">
   <style>
-    .CodeMirror pre{
+    .CodeMirror pre {
       line-height: 14px;
     }
-    #in, .CodeMirror{
+
+    #in,
+    .CodeMirror {
       position: fixed;
       top: 0;
       left: 0;
@@ -28,14 +31,15 @@
       width: 50%;
       overflow: auto;
       font-size: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
+
     .CodeMirror-scroll {
       height: 100%;
       min-height: 100%;
     }
 
-    #out{
+    #out {
       position: fixed;
       top: 0;
       right: 0;
@@ -54,72 +58,181 @@
       #in {
         display: none;
       }
+
       #out {
         left: 0;
         padding-left: 10px;
       }
     }
+
     @media print {
       #in {
         display: none;
       }
+
       #out {
         position: initial;
         overflow: initial;
       }
     }
+
     .view #in {
       display: none;
     }
+
     .view #out {
       left: 0;
       padding-left: 10px;
     }
 
-    a{ color: #0645ad; text-decoration:none;}
-    a:visited{ color: #0b0080; }
-    a:hover{ color: #06e; }
-    a:active{ color:#faa700; }
-    a:focus{ outline: thin dotted; }
-    a:hover, a:active{ outline: 0; }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
 
-    p{margin:1em 0;}
+    a:visited {
+      color: #0b0080;
+    }
 
-    img{max-width:100%;}
+    a:hover {
+      color: #06e;
+    }
 
-    h1,h2,h3,h4,h5,h6 {
-	  font-family: 'Inter', sans-serif;
-	  line-height: 1.05em;
-	}
+    a:active {
+      color: #faa700;
+    }
 
-    blockquote{color:#666666;margin:0;padding-left: 3em;border-left: 0.5em #EEE solid;}
-    hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+    a:focus {
+      outline: thin dotted;
+    }
 
-    pre, code{
+    a:hover,
+    a:active {
+      outline: 0;
+    }
+
+    p {
+      margin: 1em 0;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.05em;
+    }
+
+    blockquote {
+      color: #666666;
+      margin: 0;
+      padding-left: 3em;
+      border-left: 0.5em #EEE solid;
+    }
+
+    hr {
+      display: block;
+      height: 2px;
+      border: 0;
+      border-top: 1px solid #aaa;
+      border-bottom: 1px solid #eee;
+      margin: 1em 0;
+      padding: 0;
+    }
+
+    pre,
+    code {
       color: #000;
       font-family: monospace;
       font-size: 0.88em;
-      border-radius:3px;
+      border-radius: 3px;
       background-color: #F8F8F8;
       border: 1px solid #CCC;
     }
-    pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px; break-before: avoid; break-inside: avoid; }
-    pre code { border: 0px !important; background: transparent !important; line-height: 1.3em; }
-    code { padding: 0 3px 0 3px; }
-    sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
-    sup { top: -0.5em; }
-    sub { bottom: -0.25em; }
-    ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
-    li p:last-child { margin:0 }
-    dd { margin: 0 0 0 2em; }
-    img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
-    table { border-collapse: collapse; border-spacing: 0; }
-    td, th { vertical-align: top; padding: 4px 10px; border: 1px solid #bbb; }
-    tr:nth-child(even) td, tr:nth-child(even) th { background: #eee; }
+
+    pre {
+      white-space: pre;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      padding: 5px;
+      break-before: avoid;
+      break-inside: avoid;
+    }
+
+    pre code {
+      border: 0px !important;
+      background: transparent !important;
+      line-height: 1.3em;
+    }
+
+    code {
+      padding: 0 3px 0 3px;
+    }
+
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+
+    sup {
+      top: -0.5em;
+    }
+
+    sub {
+      bottom: -0.25em;
+    }
+
+    ul,
+    ol {
+      margin: 1em 0;
+      padding: 0 0 0 2em;
+    }
+
+    li p:last-child {
+      margin: 0
+    }
+
+    dd {
+      margin: 0 0 0 2em;
+    }
+
+    img {
+      border: 0;
+      -ms-interpolation-mode: bicubic;
+      vertical-align: middle;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    td,
+    th {
+      vertical-align: top;
+      padding: 4px 10px;
+      border: 1px solid #bbb;
+    }
+
+    tr:nth-child(even) td,
+    tr:nth-child(even) th {
+      background: #eee;
+    }
   </style>
 </head>
+
 <body>
-  <div id="in"><form><textarea id="code">---
+  <div id="in">
+    <form><textarea id="code">---
  title: (GitHub-Flavored) Markdown Editor with YAML front matter support
 ---
 
@@ -229,7 +342,8 @@ the inspiration to this, and some handy implementation hints, came to James.
  * [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) for syntax highlighting in output code blocks
  * [js-deflate](https://github.com/dankogai/js-deflate) for gzipping of data to make it fit in URLs
 
-</textarea></form></div>
+</textarea></form>
+  </div>
   <div id="out"></div>
 
   <script>
@@ -237,18 +351,18 @@ the inspiration to this, and some handy implementation hints, came to James.
     navigator.saveBlob = navigator.saveBlob || navigator.msSaveBlob || navigator.mozSaveBlob || navigator.webkitSaveBlob;
     window.saveAs = window.saveAs || window.webkitSaveAs || window.mozSaveAs || window.msSaveAs;
 
-	if (!String.prototype.startsWith) {
-	  Object.defineProperty(String.prototype, 'startsWith', {
-		enumerable: false,
-		configurable: false,
-		writable: false,
-		value: function(searchString, position) {
-		  position = position || 0;
-		  return this.lastIndexOf(searchString, position) === position;
-		}
-	  });
-	}
-	
+    if (!String.prototype.startsWith) {
+      Object.defineProperty(String.prototype, 'startsWith', {
+        enumerable: false,
+        configurable: false,
+        writable: false,
+        value: function (searchString, position) {
+          position = position || 0;
+          return this.lastIndexOf(searchString, position) === position;
+        }
+      });
+    }
+
     // Because highlight.js is a bit awkward at times
     var languageOverrides = {
       js: 'javascript',
@@ -256,13 +370,13 @@ the inspiration to this, and some handy implementation hints, came to James.
     }
 
     marked.setOptions({
-      highlight: function(code, lang){
-        if(languageOverrides[lang]) lang = languageOverrides[lang];
+      highlight: function (code, lang) {
+        if (languageOverrides[lang]) lang = languageOverrides[lang];
         return hljs.LANGUAGES[lang] ? hljs.highlight(lang, code).value : code;
       }
     });
 
-    function update(e){
+    function update(e) {
       var val = e.getValue();
 
       setOutput(val);
@@ -271,14 +385,14 @@ the inspiration to this, and some handy implementation hints, came to James.
       hashto = setTimeout(updateHash, 1000);
     }
 
-    function setOutput(val){
-      val = val.replace(/<equation>((.*?\n)*?.*?)<\/equation>/ig, function(a, b){
+    function setOutput(val) {
+      val = val.replace(/<equation>((.*?\n)*?.*?)<\/equation>/ig, function (a, b) {
         return '<img src="http://latex.codecogs.com/png.latex?' + encodeURIComponent(b) + '" />';
       });
       var title = getFrontMatterTitle(val);
       var head = '';
       if (title && title.trim() != '') {
-      	head = title + "\n===\n";
+        head = title + "\n===\n";
       }
       val = val.replace(/^\s*---\s*(\n([^-]|-(?!-))*)+---\s*/, head); // ignore YAML front matter
       document.getElementById('out').innerHTML = marked.parse(val);
@@ -293,44 +407,58 @@ the inspiration to this, and some handy implementation hints, came to James.
       onChange: update
     });
 
-    document.addEventListener('drop', function(e){
+    document.addEventListener('drop', function (e) {
       e.preventDefault();
       e.stopPropagation();
 
       var theFile = e.dataTransfer.files[0];
       var theReader = new FileReader();
-      theReader.onload = function(e){
-        editor.setValue(e.target.result);
+      theReader.onload = function (e) {
+        if (!theFile.name.endsWith('.md') && !theFile.name.endsWith('.markdown')) {
+          alert('This file does not have a .md or .markdown extension. Please use a Markdown file.');
+          return;
+        }
+        var text = e.target.result;
+
+        if (text.startsWith('---')) {
+        } else {
+          // If it does not, we will use the file name as the title
+          var title = theFile.name.replace(/\.md$/, '').replace(/\.markdown$/, '');
+          if (title && title.trim() != '') {
+            text = '---\ntitle: ' + title + '\n---\n\n' + text;
+          }
+        }
+        editor.setValue(text);
       };
 
       theReader.readAsText(theFile);
     }, false);
 
-    function save(){
+    function save() {
       var code = editor.getValue();
-	  var fileName = getFileNameFromTitle(code);
+      var fileName = getFileNameFromTitle(code);
       var blob = new Blob([code], { type: 'text/plain' });
       saveBlob(blob, fileName);
     }
 
-    function saveBlob(blob, name){
-      if(window.saveAs){
+    function saveBlob(blob, name) {
+      if (window.saveAs) {
         window.saveAs(blob, name);
-      }else if(navigator.saveBlob){
+      } else if (navigator.saveBlob) {
         navigator.saveBlob(blob, name);
-      }else{
+      } else {
         url = URL.createObjectURL(blob);
         var link = document.createElement("a");
-        link.setAttribute("href",url);
-        link.setAttribute("download",name);
+        link.setAttribute("href", url);
+        link.setAttribute("download", name);
         var event = document.createEvent('MouseEvents');
         event.initMouseEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
         link.dispatchEvent(event);
       }
     }
-	
-    document.addEventListener('keydown', function(e){
-      if(e.keyCode == 83 && (e.ctrlKey || e.metaKey)){
+
+    document.addEventListener('keydown', function (e) {
+      if (e.keyCode == 83 && (e.ctrlKey || e.metaKey)) {
         e.preventDefault();
         save();
         return false;
@@ -339,66 +467,67 @@ the inspiration to this, and some handy implementation hints, came to James.
 
     var hashto;
 
-    function updateHash(){
+    function updateHash() {
       window.location.hash = btoa(RawDeflate.deflate(unescape(encodeURIComponent(editor.getValue()))))
     }
 
-    if(window.location.hash){
+    if (window.location.hash) {
       var h = window.location.hash.replace(/^#/, '');
-      if(h.slice(0,5) == 'view:'){
+      if (h.slice(0, 5) == 'view:') {
         setOutput(decodeURIComponent(escape(RawDeflate.inflate(atob(h.slice(5))))));
         document.body.className = 'view';
-      }else{
+      } else {
         editor.setValue(decodeURIComponent(escape(RawDeflate.inflate(atob(h)))))
         update(editor);
         editor.focus();
       }
-    }else{
+    } else {
       update(editor);
       editor.focus();
     }
 
-	function getFrontMatterTitle(text) {
-		if (!text)
-			return text;
-		var title = '';
-		var matches = text.match(/^\s*---\s*(\n([^-]|-(?!-))*)+---\s*/);
-		if (matches) {
-			var found = false;
-			matches.forEach(function (item) { 
-				if (item && !found) {
-					var lines = item.split('\n');
-					lines.forEach(function (line) { 
-						if (found)
-							return;
-						if (line && line.trim().startsWith('title')) {
-							title = line.split(':')[1].trim();
-							found = true;
-						}
-					});
-				}
-			});
-		}
-		return title;
-	}
-	function getFileNameFromTitle(text) {
-		if ((!text) || text.trim() == '')
-			return "untitled.md";
-		var title = getFrontMatterTitle(text);
-		if (!title || title.trim() == '') {
-			var lineEnd = text.indexOf("\n");
-			if (lineEnd > 1)
-				title = text.substring(0, lineEnd);
-			else
-				title = text.substring(0, 250);
-		}
-		title = title.toLowerCase();
-		title = title.replace(/[\(\)<>*|^]+/g,"");
-		title = title.replace(/[\s:;,\\\/\?"]+/g,"-");
-		title = title.replace(/^-+|-+$/g, "");
-		title = title + ".md";
-		return title;
-	}
+    function getFrontMatterTitle(text) {
+      if (!text)
+        return text;
+      var title = '';
+      var matches = text.match(/^\s*---\s*(\n([^-]|-(?!-))*)+---\s*/);
+      if (matches) {
+        var found = false;
+        matches.forEach(function (item) {
+          if (item && !found) {
+            var lines = item.split('\n');
+            lines.forEach(function (line) {
+              if (found)
+                return;
+              if (line && line.trim().startsWith('title')) {
+                title = line.split(':')[1].trim();
+                found = true;
+              }
+            });
+          }
+        });
+      }
+      return title;
+    }
+    function getFileNameFromTitle(text) {
+      if ((!text) || text.trim() == '')
+        return "untitled.md";
+      var title = getFrontMatterTitle(text);
+      if (!title || title.trim() == '') {
+        var lineEnd = text.indexOf("\n");
+        if (lineEnd > 1)
+          title = text.substring(0, lineEnd);
+        else
+          title = text.substring(0, 250);
+      }
+      title = title.toLowerCase();
+      title = title.replace(/[\(\)<>*|^]+/g, "");
+      title = title.replace(/[\s:;,\\\/\?"]+/g, "-");
+      title = title.replace(/^-+|-+$/g, "");
+      title = title + ".md";
+      return title;
+    }
   </script>
 </body>
+
 </html>
