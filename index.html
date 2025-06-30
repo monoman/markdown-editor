@@ -11,7 +11,9 @@
   <script src="codemirror/javascript/javascript.js"></script>
   <script src="rawinflate.js"></script>
   <script src="rawdeflate.js"></script>
-  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans' />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,500&display=swap" rel="stylesheet">  
   <link rel="stylesheet" href="codemirror/lib/codemirror.css">
   <link rel="stylesheet" href="default.css">
   <style>
@@ -86,7 +88,7 @@
     img{max-width:100%;}
 
     h1,h2,h3,h4,h5,h6 {
-	  font-family: 'Open Sans', sans-serif;
+	  font-family: 'Inter', sans-serif;
 	  line-height: 1.05em;
 	}
 
@@ -101,7 +103,7 @@
       background-color: #F8F8F8;
       border: 1px solid #CCC;
     }
-    pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px;}
+    pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px; break-before: avoid; break-inside: avoid; }
     pre code { border: 0px !important; background: transparent !important; line-height: 1.3em; }
     code { padding: 0 3px 0 3px; }
     sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
